@@ -61,6 +61,40 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.jsonschema2pojo</groupId>
+				<artifactId>jsonschema2pojo-maven-plugin</artifactId>
+				<version>1.0.2</version>
+
+				<executions>
+					<execution>
+						<id>generate-schema_repos</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<sourceDirectory>${basedir}/src/main/resources/github/schema/repos</sourceDirectory>
+							<outputDirectory>${basedir}/src/main/java/</outputDirectory>
+							<targetPackage>com.ghcrawler.demo.domain.model.repo</targetPackage>
+							<sourceType>json</sourceType>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generate-schema_branches</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<sourceDirectory>${basedir}/src/main/resources/github/schema/branches</sourceDirectory>
+							<outputDirectory>${basedir}/src/main/java/</outputDirectory>
+							<targetPackage>com.ghcrawler.demo.domain.model.branch</targetPackage>
+							<sourceType>json</sourceType>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 

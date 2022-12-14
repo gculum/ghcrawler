@@ -1,0 +1,18 @@
+[
+  {
+    "name": "gh-pages",
+    "commit": {
+      "sha": "b47f917a7ead667ecdeeb940bc9f0aab5262781b",
+      "url": "https://api.github.com/repos/aljinovic/kint/commits/b47f917a7ead667ecdeeb940bc9f0aab5262781b"
+    },
+    "protected": false
+  },
+  {
+    "name": "master",
+    "commit": {
+      "sha": "aa4f10f0f5bdeabff515513f3a31388f196a5b5f",
+      "url": "https://api.github.com/repos/aljinovic/kint/commits/aa4f10f0f5bdeabff515513f3a31388f196a5b5f"
+    },
+    "protected": false
+  }
+]
