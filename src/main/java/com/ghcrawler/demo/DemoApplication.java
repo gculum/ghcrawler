@@ -13,7 +13,10 @@ public class DemoApplication {
 	}
 	@Bean
 	public RestTemplate restTemplate() {
-		return new RestTemplate();
+
+		RestTemplate restTemplate =  new RestTemplate();
+		restTemplate.setErrorHandler(new MyApiRestTemplateErrorHandler());
+		return restTemplate;
 	}
 
 
