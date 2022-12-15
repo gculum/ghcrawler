@@ -23,7 +23,7 @@ externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
 servers:
-  - url: https://petstore3.swagger.io/api/v3
+  - url: http://localhost:8080/api/v1
 tags:
   - name: repo
     description: parse your Github repositories

@@ -97,9 +97,9 @@ class GithubFetcherTests {
 	/**
 	 * Util method call for fetching real list of
 	 * repositories.
-	 * It is needed to set owner
+	 * It is needed to set legitimate owner
 	 */
-	@Test
+	//@Test
 	void getRepoList() {
 		gitFetcher.getRepos("aljinovic").forEach(repo -> {
 			System.out.println(repo.toString());
@@ -110,9 +110,9 @@ class GithubFetcherTests {
 	/**
 	 * Util method call for fetching real list of
 	 * branches.
-	 * It is needed to set owner and repo
+	 * It is needed to set legitimate owner and repo
 	 */
-	@Test
+	//@Test
 	void getBranchList() {
 
 		gitFetcher.getRepoBranches("aljinovic", "kint").forEach(branch -> {
