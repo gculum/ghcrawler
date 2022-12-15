@@ -1,0 +1,106 @@
+openapi: 3.0.3
+info:
+  title: Swagger Github Crawler - OpenAPI 3.0
+  description: |-
+    This is a sample Github parser based on the OpenAPI 3.0 specification.  You can find out more about
+    Swagger at [https://swagger.io](https://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!
+    You can now help us improve the API whether it's by making changes to the definition itself or to the code.
+    That way, with time, we can improve the API in general, and expose some of the new features in OAS3.
+
+    _If you're looking for the Swagger 2.0/OAS 2.0 version of Petstore, then click [here](https://editor.swagger.io/?url=https://petstore.swagger.io/v2/swagger.yaml). Alternatively, you can load via the `Edit > Load Petstore OAS 2.0` menu option!_
+    
+    Some useful links:
+    - [The GhCrawler repository](https://github.com/gculum/ghcrawler.git)
+    - [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://petstore3.swagger.io/api/v3
+tags:
+  - name: repo
+    description: parse your Github repositories
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+paths:
+  /repo/{username}:
+    get:
+      tags:
+        - repo
+      summary: Get repository by user name
+      description: ''
+      operationId: getUserByName
+      parameters:
+        - name: username
+          in: path
+          description: 'Github login info'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repo'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '406':
+          description: Content-Type value not acceptable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        name:
+          type: integer
+          description: Status code
+          example: 404
+        message:
+          type: string
+          description: error message
+          example: Resource not available
+    Repo:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Repository name
+          example: ghcrawler
+        login:
+          type: string
+          description: Github login (username)
+          example: gculum
+        branches:
+          type: array
+          items:
+            $ref: '#/components/schemas/Branch'
+
+    Branch:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Repository branch name
+          example: master
+        sha:
+          type: string
+          description: git commit sha
+          example: 286a7589d64e31558112034fc0b0efba94357654
