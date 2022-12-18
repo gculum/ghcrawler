@@ -2,6 +2,7 @@ package com.ghcrawler.demo.domain.service;
 
 import com.ghcrawler.demo.domain.model.branch.Branch;
 import com.ghcrawler.demo.domain.model.repo.Repository;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -9,12 +10,13 @@ public interface IGithubApi {
 
     /**
      * Method fetches list of github repositories related
-     * to the user specified by the login info
+     * to the user specified by the login info. Call is executed
+     * async.
      *
      * @param username login info
      * @return list of repositories
      */
-    List<Repository> getRepos(String username);
+    Flux<Repository> getRepos(String username);
 
 
     /**
@@ -25,5 +27,8 @@ public interface IGithubApi {
      * @param repo name of the repository
      * @return list of repository branches
      */
+
+
     List<Branch> getRepoBranches(String username, String repo);
+
 }

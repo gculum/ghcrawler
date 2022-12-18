@@ -1,6 +1,8 @@
 package com.ghcrawler.demo.api.service;
 
 import com.ghcrawler.demo.api.dto.Repo;
+import reactor.core.publisher.Flux;
+
 import java.util.List;
 
 public interface IGhApi {
@@ -12,6 +14,6 @@ public interface IGhApi {
      * @param username login info
      * @return list of repositories
      */
-    List<Repo> getRepoData(String username);
+    Flux<Repo> getRepoData(String username);
 
 }

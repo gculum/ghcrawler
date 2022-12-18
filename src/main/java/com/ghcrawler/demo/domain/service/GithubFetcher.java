@@ -3,10 +3,11 @@ package com.ghcrawler.demo.domain.service;
 import com.ghcrawler.demo.domain.model.branch.Branch;
 import com.ghcrawler.demo.domain.model.repo.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -20,18 +21,29 @@ public class GithubFetcher implements IGithubApi {
     RestTemplate restTemplate;
 
     @Override
-    public List<Repository> getRepos(String username) {
+    public Flux<Repository> getRepos(String username) {
         String url = REPO_URL.replace("<USER-NAME>", username);
-        ResponseEntity<Repository[]> response = restTemplate.getForEntity(url, Repository[].class);
-        return response != null && response.getStatusCode() == HttpStatus.OK ?
-                List.of(response.getBody()) : null;
+
+        Flux<Repository> ingredients = WebClient.create()
+                .get()
+                .uri(url)
+                .header("Authorization", "5Eo89RQHlgLJrESfDSvRZKvvYY+WNCTt7nBCmd33w14")
+                .retrieve()
+                .bodyToFlux(Repository.class);
+        return ingredients;
     }
+
 
     @Override
     public List<Branch> getRepoBranches(String username, String repo) {
         String url = BRANCH_URL.replace("<USER-NAME>", username).
                 replace("<REPO>", repo);
-        ResponseEntity<Branch[]> response = restTemplate.getForEntity(url, Branch[].class);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "5Eo89RQHlgLJrESfDSvRZKvvYY+WNCTt7nBCmd33w14 ");
+        HttpEntity<String> request = new HttpEntity<String>(headers);
+        ResponseEntity<Branch[]> response = restTemplate.exchange(url, HttpMethod.GET, request, Branch[].class);
+
         return response != null && response.getStatusCode() == HttpStatus.OK ?
                 List.of(response.getBody()) : null;
     }
