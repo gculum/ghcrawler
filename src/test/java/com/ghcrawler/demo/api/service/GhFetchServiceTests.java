@@ -2,14 +2,11 @@ package com.ghcrawler.demo.api.service;
 
 import com.ghcrawler.demo.api.dto.RepoDto;
 import com.ghcrawler.demo.domain.model.branch.Branch;
-import com.ghcrawler.demo.domain.model.branch.Commit;
-import com.ghcrawler.demo.domain.model.repo.Owner;
 import com.ghcrawler.demo.domain.model.repo.Repository;
 import com.ghcrawler.demo.domain.service.GithubFetcher;
 import com.ghcrawler.demo.util.JsonUmarshaller;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;

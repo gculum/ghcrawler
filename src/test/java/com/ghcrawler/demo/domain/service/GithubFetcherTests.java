@@ -1,7 +1,5 @@
 package com.ghcrawler.demo.domain.service;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ghcrawler.demo.domain.model.branch.Branch;
 import com.ghcrawler.demo.domain.model.repo.Repository;
 import com.ghcrawler.demo.util.JsonUmarshaller;
@@ -12,17 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -79,6 +72,7 @@ class GithubFetcherTests {
 			Mockito.when(requestHeadersUriSpecMock.uri(Mockito.anyString())).thenReturn(requestHeadersSpecMock);
 			Mockito.when(requestHeadersSpecMock.header(Mockito.anyString(), Mockito.anyString())).thenReturn(requestHeadersSpecMock);
 			Mockito.when(requestHeadersSpecMock.retrieve()).thenReturn(responseSpecMock);
+			Mockito.when(responseSpecMock.onStatus(any(), any())).thenReturn(responseSpecMock);
 			Mockito.when(responseSpecMock.bodyToFlux(
 					ArgumentMatchers.<Class<Repository>>notNull())).thenReturn(Flux.just(repos.get(0), repos.get(1), repos.get(2)));
 
