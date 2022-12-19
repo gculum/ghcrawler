@@ -1,31 +1,29 @@
 package com.ghcrawler.demo.api.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import reactor.core.publisher.Flux;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
-public class Repo {
+public class RepoDto {
     String name;
 
     String login;
 
-    public Repo() {
+    public RepoDto() {
         branches = new ArrayList<>();
     }
-    List<Branch> branches;
+    List<BranchDto> branches;
 
     @Override
     public String toString() {
         String str = String.format("name:[%s], login:[%s]", name, login);
 
         List<String> brStrList = new ArrayList<>();
-        for (Branch br : branches) {
+        for (BranchDto br : branches) {
             brStrList.add(String.format("{%s}", br.toString()));
         }
 

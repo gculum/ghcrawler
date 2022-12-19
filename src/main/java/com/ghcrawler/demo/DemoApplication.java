@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -25,6 +26,12 @@ public class DemoApplication {
 		RestTemplate restTemplate =  new RestTemplate();
 		restTemplate.setErrorHandler(new MyApiRestTemplateErrorHandler());
 		return restTemplate;
+	}
+
+
+	@Bean
+	public WebClient webClient() {
+		return WebClient.create();
 	}
 
 

@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -20,17 +21,20 @@ public class GithubFetcher implements IGithubApi {
     @Autowired
     RestTemplate restTemplate;
 
+    @Autowired
+    WebClient webClient;
+
     @Override
     public Flux<Repository> getRepos(String username) {
         String url = REPO_URL.replace("<USER-NAME>", username);
 
-        Flux<Repository> ingredients = WebClient.create()
+        Flux<Repository> repositories = webClient
                 .get()
                 .uri(url)
                 .header("Authorization", "5Eo89RQHlgLJrESfDSvRZKvvYY+WNCTt7nBCmd33w14")
                 .retrieve()
                 .bodyToFlux(Repository.class);
-        return ingredients;
+        return repositories;
     }
 
 

@@ -1,19 +1,17 @@
 package com.ghcrawler.demo.api.service;
 
-import com.ghcrawler.demo.api.dto.Repo;
+import com.ghcrawler.demo.api.dto.RepoDto;
 import reactor.core.publisher.Flux;
-
-import java.util.List;
 
 public interface IGhApi {
 
     /**
-     * Method returns basic information about github repositories
+     * Method returns basic information about Github repositories
      * that are owned by a user it specified login info
      *
      * @param username login info
      * @return list of repositories
      */
-    Flux<Repo> getRepoData(String username);
+    Flux<RepoDto> getRepoData(String username);
 
 }

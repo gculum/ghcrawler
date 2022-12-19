@@ -9,7 +9,7 @@ import java.util.List;
 public interface IGithubApi {
 
     /**
-     * Method fetches list of github repositories related
+     * Method fetches list of Github repositories related
      * to the user specified by the login info. Call is executed
      * async.
      *
@@ -27,8 +27,6 @@ public interface IGithubApi {
      * @param repo name of the repository
      * @return list of repository branches
      */
-
-
     List<Branch> getRepoBranches(String username, String repo);
 
 }
