@@ -1,0 +1,10 @@
+[
+  {
+    "name": "master",
+    "commit": {
+      "sha": "286a7589d64e31558112034fc0b0efba94357654",
+      "url": "https://api.github.com/repos/aljinovic/grpc_vs_rest/commits/286a7589d64e31558112034fc0b0efba94357654"
+    },
+    "protected": false
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "name": "master",
+    "commit": {
+      "sha": "d9566fccf1da90b28f5ee0981251b6a2f05d9a20",
+      "url": "https://api.github.com/repos/aljinovic/aiohttp-datadog/commits/d9566fccf1da90b28f5ee0981251b6a2f05d9a20"
+    },
+    "protected": false
+  },
+  {
+    "name": "request_query",
+    "commit": {
+      "sha": "8ebdb231f361f932437e6ac994e3256688cfd7e5",
+      "url": "https://api.github.com/repos/aljinovic/aiohttp-datadog/commits/8ebdb231f361f932437e6ac994e3256688cfd7e5"
+    },
+    "protected": false
+  }
+]
