@@ -1,7 +1,10 @@
 package com.ghcrawler.demo;
 
+import com.ghcrawler.demo.api.controller.RepoController;
 import com.ghcrawler.demo.api.errorhandling.FormatNotAcceptableException;
 import com.ghcrawler.demo.api.errorhandling.ResourceNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,9 +19,15 @@ import java.util.Map;
 @ControllerAdvice
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
+
+    Logger logger = LoggerFactory.getLogger(ControllerAdvisor.class);
+
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Object> handleUserNotFoundException(
             ResourceNotFoundException ex, WebRequest request) {
+
+
+        logger.warn(String.format("ResourceNotFoundException [%s] raised", ex.getMessage()));
 
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("status", HttpStatus.NOT_FOUND);
@@ -35,13 +44,14 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleFormatNotAcceptableException(
             FormatNotAcceptableException ex, WebRequest request) {
 
+        logger.warn(String.format("ResourceNotFoundException [%s] raised", ex.getMessage()));
+
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("status", HttpStatus.NOT_ACCEPTABLE);
         body.put("message", ex.getMessage());
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-
 
         return new ResponseEntity<>(body, headers, HttpStatus.NOT_ACCEPTABLE);
     }
@@ -50,6 +60,8 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleRuntimeException(
             RuntimeException ex, WebRequest request) {
 
+        logger.warn(String.format("RuntimeException [%s] raised", ex.getMessage()));
+
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("status", HttpStatus.NOT_ACCEPTABLE);
         body.put("message", ex.getMessage());
@@ -57,6 +69,6 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        return new ResponseEntity<>(body, headers, HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity<>(body, headers, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
