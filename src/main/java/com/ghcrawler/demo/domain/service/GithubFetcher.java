@@ -36,6 +36,11 @@ public class GithubFetcher implements IGithubApi {
     public Flux<Repository> getRepos(String username) {
         String url = REPO_URL.replace("<USER-NAME>", username);
 
+        /*
+        TODO consider moving Github token on a external
+         shared location, perhaps
+         application config or environment variable
+         */
         Flux<Repository> repositories = webClient
                 .get()
                 .uri(url)
@@ -59,6 +64,11 @@ public class GithubFetcher implements IGithubApi {
         String url = BRANCH_URL.replace("<USER-NAME>", username).
                 replace("<REPO>", repo);
 
+        /*
+        TODO consider moving Github token on a external
+         shared location, perhaps
+         application config or environment variable
+         */
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "5Eo89RQHlgLJrESfDSvRZKvvYY+WNCTt7nBCmd33w14 ");
         HttpEntity<String> request = new HttpEntity<String>(headers);

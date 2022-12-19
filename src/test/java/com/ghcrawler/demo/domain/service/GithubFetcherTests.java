@@ -51,7 +51,6 @@ class GithubFetcherTests {
 	private WebClient.ResponseSpec responseSpecMock;
 
 
-
 	@InjectMocks
 	GithubFetcher gitFetcherMock = new GithubFetcher();
 
@@ -68,6 +67,7 @@ class GithubFetcherTests {
 			List<Repository> repos = JsonUmarshaller.unmarshallRepoJsonTc1();
 			Assertions.assertEquals(3, repos.size());
 
+			//prepare WebClient mock
 			Mockito.when(webClientMock.get()).thenReturn(requestHeadersUriSpecMock);
 			Mockito.when(requestHeadersUriSpecMock.uri(Mockito.anyString())).thenReturn(requestHeadersSpecMock);
 			Mockito.when(requestHeadersSpecMock.header(Mockito.anyString(), Mockito.anyString())).thenReturn(requestHeadersSpecMock);
@@ -124,7 +124,6 @@ class GithubFetcherTests {
 					.thenReturn(response);
 
 
-
 			//mocked query
 			List<Branch> branchList = gitFetcherMock.getRepoBranches("aljinovic", "grpc_vs_rest");
 			Assertions.assertEquals(3, branchList.size());
@@ -144,7 +143,8 @@ class GithubFetcherTests {
 	/**
 	 * Util method call for fetching real list of
 	 * repositories.
-	 * It is needed to get legitimate owner
+	 * It is needed to get legitimate owner. This is not
+	 * regular JUnit
 	 */
 	//@Test
 	void getRepoList() throws InterruptedException {
@@ -157,7 +157,8 @@ class GithubFetcherTests {
 	/**
 	 * Util method call for fetching real list of
 	 * branches.
-	 * It is needed to get legitimate owner and repo
+	 * It is needed to get legitimate owner and repo. This is not
+	 * regular JUnit
 	 */
 	//@Test
 	void getBranchList() {

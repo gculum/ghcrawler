@@ -1,6 +1,5 @@
 package com.ghcrawler.demo;
 
-import com.ghcrawler.demo.api.controller.RepoController;
 import com.ghcrawler.demo.api.errorhandling.FormatNotAcceptableException;
 import com.ghcrawler.demo.api.errorhandling.ResourceNotFoundException;
 import org.slf4j.Logger;
@@ -46,6 +45,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
         logger.warn(String.format("ResourceNotFoundException [%s] raised", ex.getMessage()));
 
+        //TODO consider implement proper model class instead of HashMap
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("status", HttpStatus.NOT_ACCEPTABLE);
         body.put("message", ex.getMessage());
@@ -62,6 +62,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
         logger.warn(String.format("RuntimeException [%s] raised", ex.getMessage()));
 
+        //TODO consider implement proper model class instead of HashMap
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("status", HttpStatus.NOT_ACCEPTABLE);
         body.put("message", ex.getMessage());

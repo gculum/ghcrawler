@@ -44,7 +44,7 @@ public class JsonUmarshaller {
      * branches will be unmarshalled for a repository defined
      * with input param
      *
-     * @param repoId repository identificator string
+     * @param repoId repository identification string
      * @return list of Branch objects
      * @throws IOException
      */

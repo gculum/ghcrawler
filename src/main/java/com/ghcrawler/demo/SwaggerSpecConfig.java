@@ -20,8 +20,6 @@ import static springfox.documentation.spi.DocumentationType.SWAGGER_2;
 public class SwaggerSpecConfig {
 
 
-
-
     @Primary
     @Bean
     public SwaggerResourcesProvider swaggerResourcesProvider(
@@ -34,6 +32,13 @@ public class SwaggerSpecConfig {
         };
     }
 
+    /**
+     * Loads SwaggerResource based on a swagger.yml
+     * file located in project resources
+     *
+     * @param resource yaml folder
+     * @return SwaggerResource object
+     */
     private SwaggerResource loadResource(String resource) {
         SwaggerResource wsResource = new SwaggerResource();
         wsResource.setName(resource);

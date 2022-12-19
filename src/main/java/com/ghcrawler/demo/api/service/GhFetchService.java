@@ -1,10 +1,7 @@
 package com.ghcrawler.demo.api.service;
 
-import com.ghcrawler.demo.api.controller.RepoController;
 import com.ghcrawler.demo.api.dto.BranchDto;
 import com.ghcrawler.demo.api.dto.RepoDto;
-import com.ghcrawler.demo.domain.model.branch.Branch;
-import com.ghcrawler.demo.domain.model.repo.Repository;
 import com.ghcrawler.demo.domain.service.GithubFetcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

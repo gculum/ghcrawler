@@ -20,7 +20,7 @@ public interface IGithubApi {
 
 
     /**
-     * Method fetches list of github repository branches. Repository is
+     * Method fetches list of Github repository branches. Repository is
      * related to the user specified by the login info.
      *
      * @param username login info
